@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>Демонстрация использования JS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="stylesheets/third-party/bootstrap.min.css">
+	<link rel="stylesheet" href="stylesheets/third-party/highlightjs.min.css">
+	<link rel="stylesheet" href="stylesheets/general/types.css">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="page-header">Сферы применения JS</h1>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-12">
+				<hr/>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+				<h2 class="heading-samples">Простейший пример</h2>
+				<pre><code class="javascript">document.getElementById('innerHtmlDemo').innerHTML = 'Такие дела';</code></pre>
+			</div>
+			<div class="col-md-4">
+				<h2 class="heading-samples">Результат</h2>
+				<p><button onclick="hello()">Нажмите здесь</button></p>
+				<div class="well">
+					<div id="innerHtmlDemo"></div>
+				</div>
+				<script type="text/javascript">
+					function hello() {
+						document.getElementById('innerHtmlDemo').innerHTML = 'Такие дела';
+					}
+				</script>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<hr/>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+				<h2 class="heading-samples">Изменение HTML-атрибутов</h2>
+				<p>Здесь при клике на картинку подменяется ее URL и картинка заменяется на другую. Сам тег IMG остается на месте.</p>
+				<pre><code class="javascript">document.getElementById('bulb').src = 'lecture-01-01-demo/bulb-off.png';</code></pre>
+			</div>
+			<div class="col-md-4">
+				<h2 class="heading-samples">Результат</h2>
+				<img id="bulb" src="lecture-01-01-demo/bulb-off.png" onclick="changeBulb()">
+				<script type="text/javascript">
+					function changeBulb() {
+						if(document.getElementById('bulb').src.match('bulb-on')) {
+							document.getElementById('bulb').src = 'lecture-01-01-demo/bulb-off.png';
+						} else {
+							document.getElementById('bulb').src = 'lecture-01-01-demo/bulb-on.png';
+						}
+					}
+				</script>
+			</div>
+		</div>
+
+
+
+
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<hr/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8">
+			<h2 class="heading-samples">Изменение стилей элементов</h2>
+			<p>При клике на кнопку меняется стиль параграфа текста.</p>
+			<pre><code class="javascript">document.getElementById('style').style.fontSize = '30px';</code></pre>
+		</div>
+		<div class="col-md-4">
+			<h2 class="heading-samples">Результат</h2>
+			<p id="style">Я – тестовый параграф.</p>
+			<button onclick="changeStyle()">Ткни в меня</button>
+			<script type="text/javascript">
+				function changeStyle() {
+					document.getElementById('style').style.fontSize = '30px';
+				}
+			</script>
+		</div>
+	</div>
+
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<hr/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8">
+			<h2 class="heading-samples">Проверка введенных данных в форме</h2>
+			<p>Проверяет, что в поле введено число от 1 до 100. Если это не так, то выводит сообщение об ошибке.</p>
+			<pre><code class="javascript">var value = document.getElementById('validate').value;
+value = parseInt(value);
+if(value < 1) {
+	document.getElementById('validate-result').innerText = 'Слишком маленькое число';
+} else if (value > 100) {
+	document.getElementById('validate-result').innerText = 'Слишком большое число';
+} else if (isNaN(value)) {
+	document.getElementById('validate-result').innerText = 'Это не число';
+} else {
+	document.getElementById('validate-result').innerText = 'Хорошее число';
+}</code></pre>
+		</div>
+		<div class="col-md-4">
+			<h2 class="heading-samples">Результат</h2>
+			<input type="text" id="validate"/>
+			<button onclick="validate()">Нажать нежно</button>
+			<div id="validate-result"></div>
+			<script type="text/javascript">
+				function validate() {
+					var value = document.getElementById('validate').value;
+					value = parseInt(value);
+					if(value < 1) {
+						document.getElementById('validate-result').innerText = 'Слишком маленькое число';
+					} else if (value > 100) {
+						document.getElementById('validate-result').innerText = 'Слишком большое число';
+					} else if (isNaN(value)) {
+						document.getElementById('validate-result').innerText = 'Это не число';
+					} else {
+						document.getElementById('validate-result').innerText = 'Хорошее число';
+					}
+				}
+			</script>
+		</div>
+	</div>
+
+
+
+
+	<script src="javascripts/third-party/jquery-1.11.2.min.js"></script>
+	<script src="javascripts/third-party/bootstrap.min.js"></script>
+	<script src="javascripts/third-party/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

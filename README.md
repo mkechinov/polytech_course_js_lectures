@@ -1,2 +1,2 @@
-# polytech_course_js_lectures
+# Лекции JS
 Примеры кода лекций для курса JS Политех
