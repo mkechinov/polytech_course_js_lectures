@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Page</title>
+	<script	type="text/javascript">
+		/**
+		 * Функция конвертирует фаренгейты в Цельсия
+		 * @param {number} fahrenheit Градусы в фаренгейтах
+		 * @returns {number}
+		 */
+		function toCelsius(fahrenheit) {
+			// Что хочу
+			return (5/9) * (fahrenheit-32);
+		}
+
+		var a = ["Вася", "Пупкин"]
+		a[0]
+		a[1]
+
+		var b = {name: "Вася", surname: "Пупкин"}
+		b.name
+		b.surname
+		b.age
+		b[0]
+
+		/**
+		 * Зачем-то мы это написали, возвращает только нечетные элементы
+		 * @param {Array} arr Список чего-то
+		 * @returns {Array}
+		 */
+		function joinOnlyOdd(arr) {
+			var arr2 = []
+			for(var i = 0; i < arr.length; i = i + 1) {
+				if( i % 2 == 0 ) {
+					arr2[arr2.length] = arr[i];
+				}
+			}
+			return arr2.join(", ");
+		}
+
+
+		var joinAnother = joinOnlyOdd
+
+		var joinAnother() {
+			var arr2 = []
+			for(var i = 0; i < arr.length; i = i + 1) {
+				if( i % 2 == 0 ) {
+					arr2[arr2.length] = arr[i];
+				}
+			}
+			return arr2.join(", ");
+		}
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

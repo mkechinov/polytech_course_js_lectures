@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<!-- http://getbootstrap.com/getting-started/ -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- http://getbootstrap.com/css/ -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Наше -->
+	<link rel="stylesheet" href="stylesheets/styles.css">
+	<script type="text/javascript" src="javascripts/data.js"></script>
+	<script type="text/javascript" src="javascripts/application.js"></script>
+
+
+</head>
+<body onload="startApplication()">
+
+<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Студенты</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li id="link-page-dashboard" class="active" onclick="showPage('dashboard')"><a href="#">Пульт управления</a></li>
+				<li id="link-page-groups"><a href="#" onclick="showPage('groups')">Группы</a></li>
+				<li id="link-page-students"><a href="#" onclick="showPage('students')">Студенты</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+<div class="container page " id="page-dashboard">
+	<div class="row">
+		<div class="col-md-4">
+			<h3>Группы</h3>
+			<p>6 групп</p>
+			<p><a>Список групп</a></p>
+		</div>
+		<div class="col-md-4">
+			<h3>Студенты</h3>
+			<p>Общее количество: 100 человек.</p>
+			<p>Мужчин: 50 человек.</p>
+			<p>Женщин: 50 человек.</p>
+			<p><a>Список студентов</a></p>
+		</div>
+		<div class="col-md-4">
+			<h3>Состав групп</h3>
+			<p>Среднее количество: 16 человек.</p>
+			<p>Средний возраст: 31 год.</p>
+			<p>В среднем мужчин: 8 человек.</p>
+			<p>В среднем женщин: 8 человек.</p>
+		</div>
+	</div>
+</div>
+
+<div class="container page " id="page-groups">
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Группа</th>
+						<th>Статистика</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Группа 1</td>
+						<td>
+							<p>Мужчин: 8</p>
+							<p>Женщин: 8</p>
+							<p>Средний возраст: 33</p>
+						</td>
+					</tr>
+					<tr>
+						<td>Группа 1</td>
+						<td>
+							<p>Мужчин: 8</p>
+							<p>Женщин: 8</p>
+							<p>Средний возраст: 33</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="container page " id="page-students">
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+				<tr>
+					<th>Имя и фамилия</th>
+					<th>Возраст</th>
+					<th>Пол</th>
+					<th></th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Иван Иванов</td>
+						<td>31</td>
+						<td>Мужчина</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Иван Иванов</td>
+						<td>31</td>
+						<td>Мужчина</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Иван Иванов</td>
+						<td>31</td>
+						<td>Мужчина</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Иван Иванов</td>
+						<td>31</td>
+						<td>Мужчина</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+</body>
+</html>
