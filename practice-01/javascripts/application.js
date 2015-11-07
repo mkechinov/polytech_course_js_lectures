@@ -29,7 +29,7 @@ function showPage(pagename) {
 function hideAllPages() {
     var elements  = document.body.getElementsByClassName('page');
     for(var i = 0; i < elements.length; i++) {
-        if ( elements[i].className.match("hidden") == null ) {
+        if ( elements[i].className.indexOf("hidden") == -1 ) {
             elements[i].className += ' hidden';
             document.getElementById('link-' + elements[i].id).className = '';
         }
