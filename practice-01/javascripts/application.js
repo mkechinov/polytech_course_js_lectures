@@ -38,7 +38,6 @@ function hideAllPages() {
 
 
 
-
 function drawDashboardValues() {
 
     // Здесь будем хранить нужные промежуточные значения
