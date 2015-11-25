@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<!-- http://getbootstrap.com/getting-started/ -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- http://getbootstrap.com/css/ -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Наше -->
+	<link rel="stylesheet" href="stylesheets/styles.css">
+	<script type="text/javascript" src="javascripts/data.js"></script>
+	<script type="text/javascript" src="javascripts/application.js"></script>
+
+
+</head>
+<body onload="startApplication()">
+
+<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Студенты</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li id="link-page-dashboard" class="active" onclick="showPage('dashboard')"><a href="#">Пульт управления</a></li>
+				<li id="link-page-groups"><a href="#" onclick="showPage('groups')">Группы</a></li>
+				<li id="link-page-students"><a href="#" onclick="showPage('students')">Студенты</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+<div class="container page" id="page-dashboard">
+	<div class="row">
+		<div class="col-md-4">
+			<h3>Группы</h3>
+			<p><span id="total-groups"></span> групп</p>
+			<p><a>Список групп</a></p>
+		</div>
+		<div class="col-md-4">
+			<h3>Студенты</h3>
+			<p>Общее количество: <span id="total-persons"></span> человек.</p>
+			<p>Мужчин: <span id="total-male"></span> человек.</p>
+			<p>Женщин: <span id="total-female"></span> человек.</p>
+			<p><a>Список студентов</a></p>
+		</div>
+		<div class="col-md-4">
+			<h3>Состав групп</h3>
+			<p>Среднее количество: <span id="average-group-size"></span> человек.</p>
+			<p>Средний возраст: <span id="average-age"></span> год.</p>
+			<p>В среднем мужчин: <span id="average-male"></span> человек.</p>
+			<p>В среднем женщин: <span id="average-female"></span> человек.</p>
+		</div>
+	</div>
+</div>
+
+<div class="container page" id="page-groups">
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table" id="groups-list">
+				<thead>
+					<tr>
+						<th>Группа</th>
+						<th>Статистика</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Группа 1</td>
+						<td>
+							<p>Мужчин: 8</p>
+							<p>Женщин: 8</p>
+							<p>Средний возраст: 33</p>
+						</td>
+					</tr>
+					<tr>
+						<td>Группа 1</td>
+						<td>
+							<p>Мужчин: 8</p>
+							<p>Женщин: 8</p>
+							<p>Средний возраст: 33</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="container page" id="page-students">
+	<div class="row">
+		<div class="col-md-12">
+
+			<p><a class="btn btn-default" onclick="showPage('add-student')">Добавить студента</a></p>
+
+			<table class="table" id="students-list">
+				<thead>
+				<tr>
+					<th>Имя и фамилия</th>
+					<th>Возраст</th>
+					<th>Пол</th>
+					<th></th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Иван Иванов</td>
+						<td>31</td>
+						<td>Мужчина</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Иван Иванов</td>
+						<td>31</td>
+						<td>Мужчина</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="container page" id="page-add-student">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Новый студент</h1>
+			<form onsubmit="addStudent(this)">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Имя" name="first_name" />
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Фамилия" name="last_name" />
+				</div>
+				<div class="form-group">
+					<input type="number" class="form-control" placeholder="Возраст" name="age" />
+				</div>
+				<div class="form-group">
+					<input type="number" class="form-control" placeholder="Группа" name="group" />
+				</div>
+				<div class="form-group">
+					<label><input type="radio" name="gender" value="m" /> Мужчина</label>
+					<label><input type="radio" name="gender" value="f" /> Женщина</label>
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="Добавить студента" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
