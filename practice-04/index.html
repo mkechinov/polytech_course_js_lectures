@@ -65,6 +65,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h1>Новый студент</h1>
+			<div class="alert alert-danger hidden"></div>
 			<form onsubmit="addStudent(this, event)" id="add-student-form">
 				<div class="form-group">
 					<label>Имя</label>
@@ -95,7 +96,8 @@
 <div class="container page" id="page-edit-student">
 	<div class="row">
 		<div class="col-md-12">
-			<h1>Новый студент</h1>
+			<h1>Редактировать студента</h1>
+			<div class="alert alert-danger hidden"></div>
 			<form onsubmit="editStudent(this, event)" id="edit-student-form">
 				<input type="hidden" name="id" />
 				<div class="form-group">

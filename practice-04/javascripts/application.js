@@ -31,7 +31,66 @@ function showPage(pageName) {
 	if(pageName == 'groups') {
 		drawGroups();
 	}
+}
 
+function checkStudentForm(form) {
+	hideFormError(form);
+
+	var student = {
+    age: parseInt(form.elements.age.value),
+    group: parseInt(form.elements.group.value),
+    name: {
+      first: form.elements.first_name.value,
+      last: form.elements.last_name.value
+    },
+    gender: form.elements.gender.value
+	}
+
+	var groups = getAllGroups();
+	var result = true;
+
+	if(student.name.first.length <= 0) {
+		showFormError(form, 'Введите имя')
+		result = false
+	}
+
+	if(student.name.last.length <= 0) {
+		showFormError(form, 'Введите фамилию')
+		result = false
+	}
+
+	if(isNaN(student.age) || student.age <= 0) {
+		showFormError(form, 'Введите возраст')
+		result = false
+	}
+
+	if(isNaN(student.group) || student.group <= 0 || student.group > groups.length) {
+		showFormError(form, 'Введите номер группы от 0 до '+groups.length)
+		result = false
+	}
+
+	if(student.gender.length <= 0) {
+		showFormError(form, 'Выберите пол')
+		result = false
+	}
+
+	return result
+}
+
+function showFormError(form, message) {
+	var alert = form.parentNode.getElementsByClassName('alert')[0];
+	console.log([alert, message])
+	alert.innerHTML = alert.innerHTML.toString()+"<div>"+message+"</div>";
+	alert.className = alert.className.replace("hidden", "");
+}
+
+function hideFormError(form) {
+	var alert = form.parentNode.getElementsByClassName('alert')[0];
+	alert.innerHTML = "";
+
+	if ( alert.className.indexOf("hidden") == -1 ) {
+		alert.className = alert.className+" hidden";
+	}
 }
 
 function addStudent(myForm, event) {
@@ -48,9 +107,15 @@ function addStudent(myForm, event) {
     gender: myForm.elements.gender.value
 	}
 
-	people.push(newStudent);
+	if (checkStudentForm(myForm)) {
+		people.push(newStudent);
 
-	showPage('dashboard');
+		showPage('dashboard');
+	}
+	else {
+		console.log('ошибка')
+	}
+
 }
 
 function showEditStudent(student, event) {
@@ -97,13 +162,19 @@ function editStudent(myForm, event) {
     gender: myForm.elements.gender.value
 	}
 
-	for (i=0; i<people.length; i++){
-		if(people[i]._id == editStudent._id) {
-			people[i] = editStudent;
+	if (checkStudentForm(myForm)) {
+		for (i=0; i<people.length; i++){
+			if(people[i]._id == editStudent._id) {
+				people[i] = editStudent;
+			}
 		}
+
+		showPage('dashboard');
+	}
+	else {
+		console.log('ошибка')
 	}
 
-	showPage('dashboard');
 }
 
 function drawGroups() {
