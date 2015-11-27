@@ -1,16 +1,12 @@
 function startApplication() {
-
     // Скрываем все экраны
     hideAllPages();
 
     // Отображаем главный экран
-    showPage('dashboard');
-
+    showPage('students');
 }
 
-
 function showPage(pagename) {
-
     // Скрываем все страницы
     hideAllPages();
 
@@ -25,41 +21,38 @@ function showPage(pagename) {
     }
 
     if(pagename == 'students') {
-        drawStudents();
+    	drawStudents();
     }
-
 }
 
 function drawStudents() {
+	var myHTML = '';
+	var template = "<tr><td>#name#</td><td>#age#</td><td>#gender#</td></tr>";
+	var temporaryString = '';
 
-    var myHTML = '';
-    var template = "<tr><td>#name#</td><td>#age#</td><td>#gender#</td></tr>";
-    var temporaryString = '';
+	for (var i = 0; i < people.length; i++) {
+		temporaryString = template;
 
-    for(var i = 0; i < people.length; i++) {
+		temporaryString = temporaryString.replace('#name#', people[i].name.first + ' ' + people[i].name.last);
 
-        temporaryString = template;
+		temporaryString = temporaryString.replace('#age#', people[i].age);
 
-        temporaryString = temporaryString.replace('#name#', people[i].name.first + " " + people[i].name.last);
+		// if(people[i].gender == 'm') {
+		// 	temporaryString = temporaryString.replace('#gender#', 'Мужской');
+		// }
+		// else {
+		// 	temporaryString = temporaryString.replace('#gender#', 'Женский');
+		// }
 
-        temporaryString = temporaryString.replace('#age#', people[i].age);
+		temporaryString = temporaryString.replace('#gender#', (people[i].gender == 'm' ? 'Мужской' : 'Женский'));
 
-        if( people[i].gender == 'm' ) {
-            temporaryString = temporaryString.replace('#gender#', 'Мужской');
-        } else {
-            temporaryString = temporaryString.replace('#gender#', 'Женский');
-        }
+		myHTML += temporaryString
+	}
 
-        //temporaryString = temporaryString.replace('#gender#', (people[i].gender == 'm' ? 'Мужской' : 'Женский') );
+	var myTableElement = document.getElementById('students-list');
+	var myTableBody = myTableElement.getElementsByTagName('tbody')[0];
 
-
-        myHTML = myHTML + temporaryString;
-
-    }
-
-    var myTableElement = document.getElementById('students-list');
-    var myTableBody = myTableElement.getElementsByTagName('tbody')[0];
-    myTableBody.innerHTML = myHTML;
+	myTableBody.innerHTML = myHTML;
 }
 
 function drawDashboardValues() {
@@ -69,34 +62,31 @@ function drawDashboardValues() {
     var groups = [];
     var total_age = 0;
 
-    for(var i = 0; i < people.length; i++ ) {
+    for (var i = 0; i < people.length; i++) {
+    	if(people[i].gender == 'm') {
+    		male++;
+    	}
 
-        if( people[i].gender == "m" ) {
-            male++;
-        }
-        if( people[i].gender == "f" ) {
-            female++;
-        }
+    	if(people[i].gender == 'f') {
+    		female++;
+    	}
 
-        total_age += people[i].age;
+    	total_age += people[i].age;
 
-        if( groups.indexOf(people[i].group) == -1 ) {
-            // groups[groups.length] = people[i].group;
-            groups.push( people[i].group ); // << Так круче
-        }
-
-
+    	if(groups.indexOf(people[i].group) == -1){
+    		//groups[groups.length] = people[i].group;
+    		groups.push(people[i].group)
+    	}
     }
 
     document.getElementById('total-male').innerText = male;
     document.getElementById('total-female').innerText = female;
     document.getElementById('total-persons').innerText = total_persons;
-    document.getElementById('average-group-size').innerText = Math.round(total_persons / groups.length);
-    document.getElementById('average-male').innerText = Math.round(male / groups.length);
-    document.getElementById('average-female').innerText = Math.round(female / groups.length);
-    document.getElementById('total-groups').innerText = groups.length;
     document.getElementById('average-age').innerText = Math.round(total_age / total_persons);
-
+    document.getElementById('average-group-size').innerText = Math.round(total_persons / groups.length)
+    document.getElementById('average-male').innerText = Math.round(male / groups.length)
+    document.getElementById('average-female').innerText = Math.round(female / groups.length)
+    document.getElementById('total-groups').innerText = groups.length
 }
 
 function hideAllPages() {
