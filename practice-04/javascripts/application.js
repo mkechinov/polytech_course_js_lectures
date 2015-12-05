@@ -3,6 +3,15 @@ function startApplication() {
 	// Отображаем главный экран
 	showPage('dashboard');
 
+	var o = 0;
+	console.time("timer");
+
+	for(var i=0;i<10000000;i++){
+		o += Math.floor(Math.abs(i*2/4) / 1000);
+	}
+
+	console.timeEnd("timer");
+	console.log(o)
 }
 
 
@@ -79,7 +88,7 @@ function checkStudentForm(form) {
 
 function showFormError(form, message) {
 	var alert = form.parentNode.getElementsByClassName('alert')[0];
-	console.log([alert, message])
+	// console.error([alert, message])
 	alert.innerHTML = alert.innerHTML.toString()+"<div>"+message+"</div>";
 	alert.className = alert.className.replace("hidden", "");
 }
@@ -93,89 +102,6 @@ function hideFormError(form) {
 	}
 }
 
-function addStudent(myForm, event) {
-	event.preventDefault();
-
-	var newStudent = {
-		_id: people.length + 1,
-    age: parseInt(myForm.elements.age.value),
-    group: parseInt(myForm.elements.group.value),
-    name: {
-      first: myForm.elements.first_name.value,
-      last: myForm.elements.last_name.value
-    },
-    gender: myForm.elements.gender.value
-	}
-
-	if (checkStudentForm(myForm)) {
-		people.push(newStudent);
-
-		showPage('dashboard');
-	}
-	else {
-		console.log('ошибка')
-	}
-
-}
-
-function showEditStudent(student, event) {
-	event.preventDefault();
-
-	var id = student.id.replace('student-', '');
-	var age = student.getElementsByTagName('td')[2].textContent;
-	var group = student.getElementsByTagName('td')[1].textContent;
-	var name = {
-		first: student.getElementsByTagName('td')[0].textContent.split(" ")[0],
-		last: student.getElementsByTagName('td')[0].textContent.split(" ")[1]
-	}
-
-	if (student.getElementsByTagName('td')[3].textContent == "Женский") {
-		var gender = "f";
-	}
-	else {
-		var gender = "m";
-	}
-
-	var editForm = document.getElementById('edit-student-form')
-
-	editForm.elements.id.value = id;
-	editForm.elements.age.value = age;
-	editForm.elements.group.value = group;
-	editForm.elements.gender.value = gender;
-	editForm.elements.first_name.value = name.first;
-	editForm.elements.last_name.value = name.last;
-
-	showPage('edit-student');
-}
-
-function editStudent(myForm, event) {
-	event.preventDefault();
-
-	var editStudent = {
-		_id: myForm.elements.id.value,
-    age: parseInt(myForm.elements.age.value),
-    group: parseInt(myForm.elements.group.value),
-    name: {
-      first: myForm.elements.first_name.value,
-      last: myForm.elements.last_name.value
-    },
-    gender: myForm.elements.gender.value
-	}
-
-	if (checkStudentForm(myForm)) {
-		for (i=0; i<people.length; i++){
-			if(people[i]._id == editStudent._id) {
-				people[i] = editStudent;
-			}
-		}
-
-		showPage('dashboard');
-	}
-	else {
-		console.log('ошибка')
-	}
-
-}
 
 function drawGroups() {
 	// Подготовить шаблон
@@ -239,16 +165,15 @@ function getStudentsFromGroup(groupId) {
 
 function getAllGroups() {
 	var list = [];
+
 	for(var i = 0; i < people.length; i++) {
 		if( list.indexOf(people[i].group) == -1 ) {
 			list.push(people[i].group);
 		}
 	}
+
 	return list.sort();
 }
-
-
-
 
 
 function drawStudents() {
@@ -267,15 +192,9 @@ function drawStudents() {
 
 		temporaryString = temporaryString.replace('#group#', people[i].group);
 
-		if( people[i].gender == 'm' ) {
-			temporaryString = temporaryString.replace('#gender#', 'Мужской');
-		} else {
-			temporaryString = temporaryString.replace('#gender#', 'Женский');
-		}
-
 		temporaryString = temporaryString.replace('#id#', people[i]._id);
 
-		//temporaryString = temporaryString.replace('#gender#', (people[i].gender == 'm' ? 'Мужской' : 'Женский') );
+		temporaryString = temporaryString.replace('#gender#', (people[i].gender == 'm' ? 'Мужской' : 'Женский') );
 
 		myHTML = myHTML + temporaryString;
 
@@ -330,3 +249,68 @@ function hideAllPages() {
 	}
 }
 
+function addStudent(myForm, event) {
+	event.preventDefault();
+
+	var newStudent = {
+		"_id": people.length + 1,
+    "age": parseInt(myForm.elements.age.value),
+    "group": parseInt(myForm.elements.group.value),
+    "name": {
+      "first": myForm.elements.first_name.value,
+      "last": myForm.elements.last_name.value
+    },
+    "gender": myForm.elements.gender.value
+	}
+
+	if(checkStudentForm(myForm)) {
+		people.push(newStudent);
+
+		showPage('dashboard');
+	}
+}
+
+function showEditStudent(studentRow, event) {
+	event.preventDefault();
+
+	var id = studentRow.id.replace("student-", "");
+	var age = studentRow.getElementsByTagName('td')[2].textContent;
+	var group = studentRow.getElementsByTagName('td')[1].textContent
+	var first_name = studentRow.getElementsByTagName('td')[0].textContent.split(" ")[0];
+	var last_name = studentRow.getElementsByTagName('td')[0].textContent.split(" ")[1];
+	var gender = studentRow.getElementsByTagName('td')[3].textContent == 'Женский' ? 'f' : 'm'
+
+	var editForm = document.getElementById('edit-student-form');
+
+	editForm.elements.id.value = id;
+	editForm.elements.age.value = age;
+	editForm.elements.group.value = group;
+	editForm.elements.first_name.value = first_name;
+	editForm.elements.last_name.value = last_name;
+	editForm.elements.gender.value = gender;
+
+	showPage('edit-student');
+}
+
+function editStudent(myForm, event) {
+	event.preventDefault();
+
+	var editStudent = {
+		"_id": myForm.elements.id.value,
+    "age": parseInt(myForm.elements.age.value),
+    "group": parseInt(myForm.elements.group.value),
+    "name": {
+      "first": myForm.elements.first_name.value,
+      "last": myForm.elements.last_name.value
+    },
+    "gender": myForm.elements.gender.value
+	}
+
+	for(var i=0; i<people.length; i++) {
+		if(editStudent._id == people[i]._id) {
+			people[i] = editStudent;
+		}
+	}
+
+	showPage('students');
+}
