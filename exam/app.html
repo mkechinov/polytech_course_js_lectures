@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Экзамен по курсу</title>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+
+<h1>Таблица 1 – общая статистика</h1>
+<table border="1">
+    <tbody>
+    <tr>
+        <td>общая сумма заказов</td>
+        <td id="total-sum"></td>
+    </tr>
+    <tr>
+        <td>общее число заказов</td>
+        <td id="total-orders"></td>
+    </tr>
+    <tr>
+        <td>общая сумма рекомендованных продаж</td>
+        <td id="total-recommended"></td>
+    </tr>
+    <tr>
+        <td>общая сумма не рекомендованных продаж</td>
+        <td id="total-typical"></td>
+    </tr>
+    <tr>
+        <td>общее число покупателей</td>
+        <td id="total-customers"></td>
+    </tr>
+    <tr>
+        <td>количество заказов, в которых нет рекомендованных продаж</td>
+        <td id="total-without-recommended"></td>
+    </tr>
+    <tr>
+        <td>количество заказов, в которых только рекомендованные продажи</td>
+        <td id="total-without-typical"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Таблица 2 – статистика с 26 по 28 (включительно) июня 2015 год</h1>
+
+<table border="1">
+    <tbody>
+    <tr>
+        <td>сумма продаж за период</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>количество продаж за период</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>покупателей за период</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>количество рекомендованных продаж за период</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Таблица 3 – самые дорогие заказы</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Дата</th>
+            <th>№ заказа</th>
+            <th>ID покупателя</th>
+            <th>Общая сумма</th>
+            <th>Обычные продажи</th>
+            <th>Рекомендованные продажи</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>23.08.2015</td>
+            <td>5071011</td>
+            <td>33964187</td>
+            <td>1790 руб.</td>
+            <td>0 руб.</td>
+            <td>1790 руб.</td>
+        </tr>
+        <tr>
+            <td>23.08.2015</td>
+            <td>5071011</td>
+            <td>33964187</td>
+            <td>1790 руб.</td>
+            <td>0 руб.</td>
+            <td>1790 руб.</td>
+        </tr>
+        <tr>
+            <td>23.08.2015</td>
+            <td>5071011</td>
+            <td>33964187</td>
+            <td>1790 руб.</td>
+            <td>0 руб.</td>
+            <td>1790 руб.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h1>Таблица 4 – постоянные покупатели</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Покупатель</th>
+        <th>Заказов</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>5071011</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>5071012</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>507103</td>
+        <td>3</td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Блок 5 –  поиск заказов по покупателю</h1>
+<p>
+    <input type="text" placeholder="ID покупателя">
+    <button>Показать заказы</button>
+</p>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Дата</th>
+        <th>№ заказа</th>
+        <th>Общая сумма</th>
+        <th>Обычные продажи</th>
+        <th>Рекомендованные продажи</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>23.08.2015</td>
+        <td>5071011</td>
+        <td>1790 руб.</td>
+        <td>0 руб.</td>
+        <td>1790 руб.</td>
+    </tr>
+    <tr>
+        <td>23.08.2015</td>
+        <td>5071011</td>
+        <td>1790 руб.</td>
+        <td>0 руб.</td>
+        <td>1790 руб.</td>
+    </tr>
+    <tr>
+        <td>23.08.2015</td>
+        <td>5071011</td>
+        <td>1790 руб.</td>
+        <td>0 руб.</td>
+        <td>1790 руб.</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
