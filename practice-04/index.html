@@ -40,7 +40,7 @@
 		<div class="col-md-4">
 			<h3>Группы</h3>
 			<p><span id="total-groups"></span> групп</p>
-			<p><a>Список групп</a></p>
+			<p><a onclick="showPage('groups')">Список групп</a></p>
 		</div>
 		<div class="col-md-4">
 			<h3>Студенты</h3>
@@ -65,7 +65,42 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h1>Новый студент</h1>
-			<form onsubmit="addStudent(this)">
+			<div class="alert alert-danger hidden"></div>
+			<form onsubmit="addStudent(this, event)" id="add-student-form">
+				<div class="form-group">
+					<label>Имя</label>
+					<input type="text" class="form-control" name="first_name" />
+				</div>
+				<div class="form-group">
+					<label>Фамилия</label>
+					<input type="text" class="form-control" name="last_name" />
+				</div>
+				<div class="form-group">
+					<label for="student-age">Возраст</label>
+					<input id="student-age" type="number" class="form-control" name="age" />
+				</div>
+				<div class="form-group">
+					<label>Группа</label>
+					<input type="number" class="form-control" name="group" />
+				</div>
+				<div class="form-group">
+					<label><input type="radio" name="gender" value="m" /> Мужчина</label>
+
+					<label><input type="radio" name="gender" value="f" /> Женщина</label>
+				</div>
+				<input type="submit" class="btn btn-primary" value="Сохранить" />
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="container page" id="page-edit-student">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Редактировать студента</h1>
+			<div class="alert alert-danger hidden"></div>
+			<form onsubmit="editStudent(this, event)" id="edit-student-form">
+				<input type="hidden" name="id" />
 				<div class="form-group">
 					<label>Имя</label>
 					<input type="text" class="form-control" name="first_name" />
@@ -91,7 +126,6 @@
 		</div>
 	</div>
 </div>
-
 
 <div class="container page" id="page-groups">
 	<div class="row">
@@ -133,6 +167,7 @@
 				<thead>
 				<tr>
 					<th>Имя и фамилия</th>
+					<th>Группа</th>
 					<th>Возраст</th>
 					<th>Пол</th>
 					<th></th>
