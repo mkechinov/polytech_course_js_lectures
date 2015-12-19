@@ -10,14 +10,14 @@
 	<!-- http://getbootstrap.com/css/ -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!--jQuery -->
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
 	<!-- Наше -->
 	<link rel="stylesheet" href="stylesheets/styles.css">
+
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="javascripts/data.js"></script>
 	<script type="text/javascript" src="javascripts/application.js"></script>
 
+	
 
 </head>
 <body>
@@ -29,9 +29,9 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li id="link-page-dashboard" class="active" ><a onclick="showPage('dashboard')">Пульт управления</a></li>
-				<li id="link-page-groups"><a onclick="showPage('groups')">Группы</a></li>
-				<li id="link-page-students"><a onclick="showPage('students')">Студенты</a></li>
+				<li id="link-page-dashboard" class="active" ><a class="internal" data-href="dashboard">Пульт управления</a></li>
+				<li id="link-page-groups"><a class="internal" data-href="groups">Группы</a></li>
+				<li id="link-page-students"><a class="internal" data-href="students">Студенты</a></li>
 			</ul>
 		</div>
 	</div>
