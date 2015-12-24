@@ -1,10 +1,16 @@
-$(document).ready(function(){
+$(document).ready(startApplication);
+
+
+function startApplication() {
 
 	// Отображаем главный экран
 	showPage('dashboard');
 
-});
+	$('a.internal').click(function(){
+		showPage( $(this).data('href') );
+	});
 
+}
 
 
 function showPage(pageName) {
@@ -13,8 +19,8 @@ function showPage(pageName) {
 	hideAllPages();
 
 	// Отображаем заказанную страницу
-	$('#page-' + pageName).show();
-	$('#link-page-' + pageName).toggleClass('active');
+	$('#page-' + pageName).fadeIn(500);
+	$('#link-page-' + pageName).addClass('active');
 
 	// Рассчитываем цифры и отображаем их для главной страницы
 	if(pageName == 'dashboard') {
@@ -112,9 +118,8 @@ function drawGroups() {
 	}
 
 	// Поместить HTML на страницу
-	var myTableElement = document.getElementById('groups-list');
-	var myTableBody = myTableElement.getElementsByTagName('tbody')[0];
-	myTableBody.innerHTML = myHTML;
+	$('#groups-list tbody').html(myHTML);
+
 }
 
 
@@ -132,7 +137,7 @@ function groupStats(groupId) {
 		if(students[i].gender == 'f') {
 			data.female++;
 		}
-		data.age = data.age + students[i].age;
+		data.age = data.age + students[i]. age;
 	}
 	data.age = Math.round(data.age / students.length);
 	return data;
@@ -188,9 +193,7 @@ function drawStudents() {
 
 	}
 
-	var myTableElement = document.getElementById('students-list');
-	var myTableBody = myTableElement.getElementsByTagName('tbody')[0];
-	myTableBody.innerHTML = myHTML;
+	$('#students-list tbody').html(myHTML);
 }
 
 function drawDashboardValues() {
@@ -225,8 +228,8 @@ function drawDashboardValues() {
 }
 
 function hideAllPages() {
+	$('.navbar li').removeClass('active');
 	$('.page').hide();
-	$('.navbar-nav li').removeClass('active');
 }
 
 function addStudent(myForm, event) {
@@ -253,21 +256,31 @@ function addStudent(myForm, event) {
 function showEditStudent(studentRow, event) {
 	event.preventDefault();
 
-	var id = studentRow.id.replace("student-", "");
-	var age = studentRow.getElementsByTagName('td')[2].textContent;
-	var group = studentRow.getElementsByTagName('td')[1].textContent
-	var first_name = studentRow.getElementsByTagName('td')[0].textContent.split(" ")[0];
-	var last_name = studentRow.getElementsByTagName('td')[0].textContent.split(" ")[1];
-	var gender = studentRow.getElementsByTagName('td')[3].textContent == 'Женский' ? 'f' : 'm'
+	var row = $(studentRow);
 
-	var editForm = document.getElementById('edit-student-form');
+	var id = row.prop('id').replace("student-", "");
+	// var id = studentRow.id.replace("student-", "");
 
-	editForm.elements.id.value = id;
-	editForm.elements.age.value = age;
-	editForm.elements.group.value = group;
-	editForm.elements.first_name.value = first_name;
-	editForm.elements.last_name.value = last_name;
-	editForm.elements.gender.value = gender;
+	// var age = studentRow.getElementsByTagName('td')[2].textContent;
+	var age = row.find('td')[2].textContent;
+
+	// var group = studentRow.getElementsByTagName('td')[1].textContent
+	var group = row.find('td')[1].textContent;
+
+	// var first_name = studentRow.getElementsByTagName('td')[0].textContent.split(" ")[0];
+	// var last_name = studentRow.getElementsByTagName('td')[0].textContent.split(" ")[1];
+	var first_name = row.find('td')[0].textContent.split(" ")[0];
+	var last_name = row.find('td')[0].textContent.split(" ")[1];
+
+	// var gender = studentRow.getElementsByTagName('td')[3].textContent == 'Женский' ? 'f' : 'm'
+	var gender = row.find('td')[3].textContent == 'Женский' ? 'f' : 'm';
+
+	$('#edit-student-form input[name=id]').val(id);
+	$('#edit-student-form input[name=age]').val(age);
+	$('#edit-student-form input[name=first_name]').val(first_name);
+	$('#edit-student-form input[name=last_name]').val(last_name);
+	$('#edit-student-form input[name=group]').val(group);
+	$('#edit-student-form input[name=gender][value=' + gender + ']').prop('checked', true);
 
 	showPage('edit-student');
 }
