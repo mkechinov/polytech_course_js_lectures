@@ -4,23 +4,18 @@ $(document).ready(startApplication);
 function startApplication() {
 
 	// Отображаем главный экран
-	showPage('dashboard');
-
-	$('a.internal').click(function(){
-		showPage( $(this).data('href') );
-	});
+	drawDashboardValues();
 
 	$('#tabs').tabs({
-		beforeActivate: function(event, ui) {
-			var pageName = ui.newTab.data('page');
-			showPage(pageName);
-		}
+		beforeActivate: showPage
 	});
 
 }
 
 
-function showPage(pageName) {
+function showPage(event, ui) {
+
+	var pageName = ui.newTab.data('page');
 
 	// Рассчитываем цифры и отображаем их для главной страницы
 	if(pageName == 'dashboard') {
