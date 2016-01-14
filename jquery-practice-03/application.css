@@ -1,0 +1,7 @@
+ul li {
+    padding: 10px;
+    border: 1px dashed black;
+    margin-bottom: 10px;
+    list-style: none;
+    width: 30px;
+}
