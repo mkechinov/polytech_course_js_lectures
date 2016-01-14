@@ -10,8 +10,9 @@ function startApplication() {
 		beforeActivate: showPage
 	});
 
+	$('#page-add-student').dialog().dialog('close');
+	$('#page-edit-student').dialog().dialog('close');
 }
-
 
 function showPage(event, ui) {
 
@@ -91,7 +92,6 @@ function hideFormError(form) {
 	}
 }
 
-
 function drawGroups() {
 	// Подготовить шаблон
 	var myHTML = '';
@@ -116,7 +116,6 @@ function drawGroups() {
 	$('#groups-list tbody').html(myHTML);
 
 }
-
 
 function groupStats(groupId) {
 	// var data = {};
@@ -148,9 +147,6 @@ function getStudentsFromGroup(groupId) {
 	return list;
 }
 
-
-
-
 function getAllGroups() {
 	var list = [];
 
@@ -162,7 +158,6 @@ function getAllGroups() {
 
 	return list.sort();
 }
-
 
 function drawStudents() {
 
@@ -222,11 +217,6 @@ function drawDashboardValues() {
 
 }
 
-function hideAllPages() {
-	$('.navbar li').removeClass('active');
-	$('.page').hide();
-}
-
 function addStudent(myForm, event) {
 	event.preventDefault();
 
@@ -244,30 +234,20 @@ function addStudent(myForm, event) {
 	if(checkStudentForm(myForm)) {
 		people.push(newStudent);
 
-		showPage('dashboard');
+		$('#tabs').tabs('option', 'active', 0);
 	}
 }
 
 function showEditStudent(studentRow, event) {
+
 	event.preventDefault();
 
 	var row = $(studentRow);
-
 	var id = row.prop('id').replace("student-", "");
-	// var id = studentRow.id.replace("student-", "");
-
-	// var age = studentRow.getElementsByTagName('td')[2].textContent;
 	var age = row.find('td')[2].textContent;
-
-	// var group = studentRow.getElementsByTagName('td')[1].textContent
 	var group = row.find('td')[1].textContent;
-
-	// var first_name = studentRow.getElementsByTagName('td')[0].textContent.split(" ")[0];
-	// var last_name = studentRow.getElementsByTagName('td')[0].textContent.split(" ")[1];
 	var first_name = row.find('td')[0].textContent.split(" ")[0];
 	var last_name = row.find('td')[0].textContent.split(" ")[1];
-
-	// var gender = studentRow.getElementsByTagName('td')[3].textContent == 'Женский' ? 'f' : 'm'
 	var gender = row.find('td')[3].textContent == 'Женский' ? 'f' : 'm';
 
 	$('#edit-student-form input[name=id]').val(id);
@@ -277,7 +257,7 @@ function showEditStudent(studentRow, event) {
 	$('#edit-student-form input[name=group]').val(group);
 	$('#edit-student-form input[name=gender][value=' + gender + ']').prop('checked', true);
 
-	showPage('edit-student');
+	$('#page-edit-student').dialog('open');
 }
 
 function editStudent(myForm, event) {
@@ -300,5 +280,7 @@ function editStudent(myForm, event) {
 		}
 	}
 
-	showPage('students');
+	$('#page-edit-student').dialog('close');
+	$('#tabs').tabs('option', 'active', 0);
+	$('#tabs').tabs('option', 'active', 2);
 }
