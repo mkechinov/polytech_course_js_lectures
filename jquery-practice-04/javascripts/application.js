@@ -10,19 +10,17 @@ function startApplication() {
 		showPage( $(this).data('href') );
 	});
 
-	$('#tabs').tabs();
+	$('#tabs').tabs({
+		beforeActivate: function(event, ui) {
+			var pageName = ui.newTab.data('page');
+			showPage(pageName);
+		}
+	});
 
 }
 
 
 function showPage(pageName) {
-
-	// Скрываем все страницы
-	hideAllPages();
-
-	// Отображаем заказанную страницу
-	$('#page-' + pageName).fadeIn(500);
-	$('#link-page-' + pageName).addClass('active');
 
 	// Рассчитываем цифры и отображаем их для главной страницы
 	if(pageName == 'dashboard') {
