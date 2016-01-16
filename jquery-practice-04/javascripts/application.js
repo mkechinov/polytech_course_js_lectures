@@ -281,6 +281,5 @@ function editStudent(myForm, event) {
 	}
 
 	$('#page-edit-student').dialog('close');
-	$('#tabs').tabs('option', 'active', 0);
-	$('#tabs').tabs('option', 'active', 2);
+	drawStudents();
 }
